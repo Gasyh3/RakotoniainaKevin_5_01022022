@@ -1,4 +1,4 @@
-affichageItems();
+affichageCanapes();
 
 //Récupération des éléments de l'API
 async function getItemsAPI() {
@@ -7,11 +7,11 @@ async function getItemsAPI() {
 }
 
 //Affichage des éléments de l'API dans le DOM
-async function affichageItems () {
+async function affichageCanapes () {
     let affichage = await getItemsAPI()
     .then(function (dataAPI) {
         const canapes = dataAPI;
-        console.table(items);
+        console.table(canapes);
         for (let canape in canapes) {
 
             //Mise en place de l'élément <a>
