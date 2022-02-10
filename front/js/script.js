@@ -17,7 +17,7 @@ async function affichageCanapes () {
             //Mise en place de l'élément <a>
             let canapeLien = document.createElement("a");
             document.querySelector(".items").appendChild(canapeLien);
-            canapeLien.href = `product.html?id={dataAPI[item]._id}`;
+            canapeLien.href = `product.html?id=${dataAPI[canape]._id}`;
 
             //Mise en place de l'élément <article>
             let canapeArticle = document.createElement("article");
@@ -34,7 +34,6 @@ async function affichageCanapes () {
             canapeArticle.appendChild(canapeNom);
             canapeNom.classList.add("productName");
             canapeNom.innerHTML = dataAPI[canape].name;
-
 
             //Mise en place de l'élément <p>
             let canapeDescription = document.createElement("p");
