@@ -14,7 +14,7 @@ async function affichageCanapes () {
         console.table(canapes);
         for (let canape in canapes) {
 
-            //Mise en place de l'élément <a>
+            //Mise en place de l'élément <a> ETAPE 4
             let canapeLien = document.createElement("a");
             document.querySelector(".items").appendChild(canapeLien);
             canapeLien.href = `product.html?id=${dataAPI[canape]._id}`;
