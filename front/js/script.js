@@ -43,6 +43,7 @@ async function affichageCanapes () {
         }
     })
     .catch (function(error) {
+        console.log("error");
         return error;
     });
 }

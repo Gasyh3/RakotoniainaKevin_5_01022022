@@ -1,27 +1,25 @@
-//Récupération de l'id ETAPE 5
-const str = window.location.href;
-const url = new URL(str);
-const idProduct = url.searchParams.get("id");
+// Récupération de l'id ETAPE 5
+var str = window.location.href;
+var url = new URL(str);
+var idProduct = url.searchParams.get("id");
+console.log(idProduct);
 let item = "";
 
-//afficher l'id du produit selectionné sur la console
-console.log(idProduct); 
-
-//Appel de la fonction
 getItem();
 
-//Récupération des éléments de l'API
+// Récupération des articles de l'API
 function getItem() {
     fetch("http://localhost:3000/api/products/" + idProduct)
     .then((res) => {
         return res.json();
     })
 
-    .then(async function(resAPI) {
-        item = await resAPI;
+    // Répartition des données de l'API dans le DOM
+    .then(async function (resultatAPI) {
+        item = await resultatAPI;
         console.table(item);
-        if (item) {
-            getProduct(item);
+        if (item){
+            getPost(item);
         }
     })
     .catch((error) => {
@@ -29,31 +27,33 @@ function getItem() {
     })
 }
 
-function getProduct(item) { 
-    //Mise en place de l'image
+//Mise en place des éléments du canapé dans le DOM Etape 6
+function getPost(item){
+    // Insertion de l'image
     let productImg = document.createElement("img");
-    document.querySelector("item__img").appendChild(productImg);
+    document.querySelector(".item__img").appendChild(productImg);
     productImg.src = item.imageUrl;
     productImg.alt = item.altTxt;
 
-    //Modification du title <h1>
-    let productTitre = document.getElementById('title');
-    productTitre.innerHTML = item.name;
+    // Modification du titre "h1"
+    let productName = document.getElementById('title');
+    productName.innerHTML = item.name;
 
-    //Modification du Prix
-    let productPrix = document.getElementById('price');
-    productPrix.innerHTML = item.price;
+    // Modification du prix
+    let productPrice = document.getElementById('price');
+    productPrice.innerHTML = item.price;
 
-    //Modification de la description
+    // Modification de la description
     let productDescription = document.getElementById('description');
     productDescription.innerHTML = item.description;
 
-    //Mise en place de la selection de couleurs
-    for (let colors of item.colors) {
+    // Insertion des options de couleurs
+    for (let colors of item.colors){
         console.table(colors);
-        let productCouleurs = document.createElement("option");
-        document.querySelector("#colors").appendChild(productCouleurs);
-        productCouleurs.value = colors;
-        productCouleurs.innerHTML = colors;
+        let productColors = document.createElement("option");
+        document.querySelector("#colors").appendChild(productColors);
+        productColors.value = colors;
+        productColors.innerHTML = colors;
     }
+   
 }
