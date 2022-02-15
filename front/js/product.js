@@ -19,7 +19,7 @@ function getItem() {
         item = await resultatAPI;
         console.table(item);
         if (item){
-            getPost(item);
+            AfficheProduct(item);
         }
     })
     .catch((error) => {
@@ -28,7 +28,7 @@ function getItem() {
 }
 
 //Mise en place des éléments du canapé dans le DOM Etape 6
-function getPost(item){
+function AfficheProduct(item){
     // Insertion de l'image
     let productImg = document.createElement("img");
     document.querySelector(".item__img").appendChild(productImg);
