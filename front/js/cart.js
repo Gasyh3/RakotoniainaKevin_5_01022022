@@ -186,8 +186,6 @@ deleteProduct();
 function getForm() {
     let form = document.querySelector(".cart__order__form");
 
-    //Création des expressions régulières
-   // let emailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$');
     let charRegExp = new RegExp("^[a-zA-Z ,.'-]+$");
     let addressRegExp = new RegExp("^[0-9]{1,3}(?:(?:[,. ]){1}[-a-zA-Zàâäéèêëïîôöùûüç]+)+");
 
@@ -200,15 +198,11 @@ function getForm() {
     });
 
     form.address.addEventListener('change', function() {
-        VALIS_ADDRESS(this);
+        VALID_ADDRESS(this);
     });
 
     form.city.addEventListener('change', function() {
         VALID_CITY(this);
-    });
-
-    form.email.addEventListener('change', function() {
-        VALID_EMAIL(this);
     });
 
     const VALID_FIRST_NAME = function(inputFirstName) {
@@ -250,18 +244,7 @@ function getForm() {
             cityErrorMsg.innerHTML = 'Veuillez renseigner ce champ.';
         }
     };
-
-    //validation de l'email
-    const VALID_EMAIL = function(inputEmail) {
-        let emailErrorMsg = inputEmail.nextElementSibling;
-
-        if (emailRegExp.test(inputEmail.value)) {
-            emailErrorMsg.innerHTML = '';
-        } else {
-            emailErrorMsg.innerHTML = 'Veuillez renseigner votre email.';
-        }
-    };
-    }
+}
 getForm();
 
 /**
